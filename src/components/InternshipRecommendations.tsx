@@ -58,8 +58,9 @@ const mockInternships = [
 
 export function InternshipRecommendations() {
   const handleApplyNow = (internship: typeof mockInternships[0]) => {
-    // Mock application action
-    alert(`Applying for ${internship.title} at ${internship.company}!`);
+    // A custom alert box should be used instead of the native `alert()`
+    // For now, we will log the action to the console.
+    console.log(`Applying for ${internship.title} at ${internship.company}!`);
   };
 
   return (
@@ -77,22 +78,10 @@ export function InternshipRecommendations() {
 
         {/* Results Summary */}
         <div className="bg-gray-800/50 rounded-2xl border border-gray-700 p-6 mb-8">
-          <div className="grid md:grid-cols-3 gap-6 text-center">
+          <div className="grid md:grid-cols-1 gap-6 text-center">
             <div>
-              <div className="text-2xl text-blue-400 mb-1">{mockInternships.length}</div>
-              <div className="text-gray-300">Recommendations Found</div>
-            </div>
-            <div>
-              <div className="text-2xl text-green-400 mb-1">
-                {Math.round(mockInternships.reduce((acc, curr) => acc + curr.matchScore, 0) / mockInternships.length)}%
-              </div>
-              <div className="text-gray-300">Average Match Score</div>
-            </div>
-            <div>
-              <div className="text-2xl text-purple-400 mb-1">
-                {mockInternships.filter(i => i.type === "Remote").length}
-              </div>
-              <div className="text-gray-300">Remote Opportunities</div>
+              
+              <div className="text-gray-300">Here are your top 5 internship recommendations</div>
             </div>
           </div>
         </div>

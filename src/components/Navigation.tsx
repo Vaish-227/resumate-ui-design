@@ -26,7 +26,7 @@ export function Navigation({ currentPage, onPageChange }: NavigationProps) {
               onClick={() => onPageChange('home')}
               className="text-white hover:text-blue-400 transition-colors duration-200"
             >
-              <span className="text-2xl font-bold">Resumate</span>
+              <span className="text-2xl font-bold">InternBuzz</span>
             </button>
           </div>
 

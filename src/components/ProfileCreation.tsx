@@ -1,4 +1,4 @@
-import { useState } from 'react';
+/*import { useState } from 'react';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -27,8 +27,8 @@ export function ProfileCreation({ onContinue }: ProfileCreationProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        {/* Header */}
-        <div className="text-center mb-8">
+        {// Header }*/
+       /* <div className="text-center mb-8">
           <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
             <User className="text-blue-400" size={36} />
           </div>
@@ -40,8 +40,8 @@ export function ProfileCreation({ onContinue }: ProfileCreationProps) {
           </p>
         </div>
 
-        {/* Profile Form */}
-        <Card className="bg-gray-800/50 border-gray-700 p-8">
+        {// Profile Form }*/
+        /*<Card className="bg-gray-800/50 border-gray-700 p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <Label className="text-gray-300">Full Name</Label>
@@ -86,4 +86,4 @@ export function ProfileCreation({ onContinue }: ProfileCreationProps) {
       </div>
     </div>
   );
-}
+}*/

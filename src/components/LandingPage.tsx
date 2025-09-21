@@ -1,5 +1,6 @@
 import { ArrowRight, Users, Zap, Target } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Card } from './ui/card';
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -13,12 +14,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight">
-              Build Smarter Resumes.{' '}
-              <span className="text-blue-400">Get Better Internships.</span>
+              Unlock Your Career. {' '}
+              <span className="text-blue-400">Find Your Perfect Internship.</span>
             </h1>
             
             <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Resumate creates your resume and recommends internships tailored to your skills and goals.
+              InternBuzz creates your resume and recommends internships tailored to your skills and goals.
             </p>
             
             <button
@@ -47,7 +48,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl text-white mb-4">
-            Why Choose Resumate?
+            Why Choose InternBuzz?
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             We combine AI-powered resume building with personalized internship matching
@@ -55,7 +56,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
+          <Card className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
             <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
               <Zap className="text-blue-400" size={24} />
             </div>
@@ -63,9 +64,9 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <p className="text-gray-400">
               AI-powered suggestions and real-time preview to create professional resumes in minutes.
             </p>
-          </div>
+          </Card>
           
-          <div className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
+          <Card className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
             <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
               <Target className="text-blue-400" size={24} />
             </div>
@@ -73,9 +74,9 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <p className="text-gray-400">
               Get internship recommendations that match your skills, interests, and career goals perfectly.
             </p>
-          </div>
+          </Card>
           
-          <div className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
+          <Card className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105">
             <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
               <Users className="text-blue-400" size={24} />
             </div>
@@ -83,7 +84,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <p className="text-gray-400">
               Built specifically for students with templates and opportunities designed for early-career success.
             </p>
-          </div>
+          </Card>
         </div>
       </div>
     </div>

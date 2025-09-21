@@ -1,11 +1,11 @@
 import { useState } from 'react';
+
 import { Card } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Button } from './ui/button';
-import { Separator } from './ui/separator';
-import { Eye, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 interface ResumeBuilderProps {
   onSubmit: () => void;
@@ -15,13 +15,14 @@ interface FormData {
   name: string;
   email: string;
   phone: string;
+  location: string;
+  preferredLocation: string;
   education: string;
   university: string;
   graduationYear: string;
   skills: string;
-  certifications: string;
-  interests: string;
-  goals: string;
+  experience: string;
+  languages: string;
 }
 
 export function ResumeBuilder({ onSubmit }: ResumeBuilderProps) {
@@ -29,13 +30,14 @@ export function ResumeBuilder({ onSubmit }: ResumeBuilderProps) {
     name: '',
     email: '',
     phone: '',
+    location: '',
+    preferredLocation: '',
     education: '',
     university: '',
     graduationYear: '',
     skills: '',
-    certifications: '',
-    interests: '',
-    goals: ''
+    experience: '',
+    languages: '',
   });
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -52,14 +54,14 @@ export function ResumeBuilder({ onSubmit }: ResumeBuilderProps) {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl text-white mb-4">
-            Build Your Perfect Resume
+            Tell Us About Yourself to Find the Perfect Internship
           </h1>
           <p className="text-gray-400 text-lg">
-            Fill in your details and watch your resume come to life
+            Your details will be used to generate your resume and match you with great opportunities.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-1 gap-8">
           {/* Form Section */}
           <div className="space-y-6">
             <Card className="bg-gray-800/50 border-gray-700 p-6">
@@ -91,13 +93,32 @@ export function ResumeBuilder({ onSubmit }: ResumeBuilderProps) {
                   <div>
                     <Label className="text-gray-300">Phone</Label>
                     <Input
-                      placeholder="(555) 123-4567"
+                      placeholder="+91 12345-67890"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
                       className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400"
                     />
                   </div>
                 </div>
+
+                <div>
+                  <Label className="text-gray-300">Location</Label>
+                  <Input
+                    placeholder="Enter your city, state"
+                    value={formData.location}
+                    onChange={(e) => handleInputChange('location', e.target.value)}
+                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400"
+                  />
+                </div>
+              </div>
+              <div>
+                <Label className="text-gray-300">Preferred Location</Label>
+                <Input
+                  placeholder='Enter your preferred city or state'
+                  value={formData.preferredLocation}
+                  onChange={(e) => handleInputChange('preferredLocation', e.target.value)}
+                  className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400"
+                />
               </div>
             </Card>
 
@@ -140,128 +161,66 @@ export function ResumeBuilder({ onSubmit }: ResumeBuilderProps) {
               <h2 className="text-white text-xl mb-4">Skills & Experience</h2>
               <div className="space-y-4">
                 <div>
-                  <Label className="text-gray-300">Technical Skills</Label>
+                  <Label className="text-gray-300">Skills</Label>
                   <Textarea
-                    placeholder="e.g., Python, JavaScript, React, SQL, Machine Learning..."
+                    placeholder="e.g., MS office, advanced excel..."
                     value={formData.skills}
                     onChange={(e) => handleInputChange('skills', e.target.value)}
                     className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 min-h-[80px]"
                   />
                 </div>
                 <div>
-                  <Label className="text-gray-300">Certifications</Label>
+                  <Label className="text-gray-300">Experience</Label>
                   <Textarea
-                    placeholder="e.g., AWS Certified Cloud Practitioner, Google Data Analytics Certificate..."
-                    value={formData.certifications}
-                    onChange={(e) => handleInputChange('certifications', e.target.value)}
+                    placeholder="e.g., Past 2 years..."
+                    value={formData.experience}
+                    onChange={(e) => handleInputChange('experience', e.target.value)}
+                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 min-h-[60px]"
+                  />
+                </div>
+                <div>
+                  <Label className="text-gray-300">Languages</Label>
+                  <Textarea
+                    placeholder="e.g., English , Hindi , Marathi..."
+                    value={formData.languages}
+                    onChange={(e) => handleInputChange('languages', e.target.value)}
                     className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 min-h-[60px]"
                   />
                 </div>
               </div>
             </Card>
 
-            <Card className="bg-gray-800/50 border-gray-700 p-6">
-              <h2 className="text-white text-xl mb-4">Interests & Goals</h2>
-              <div className="space-y-4">
-                <div>
-                  <Label className="text-gray-300">Interests</Label>
-                  <Textarea
-                    placeholder="e.g., Web Development, Data Science, Mobile Apps, AI/ML..."
-                    value={formData.interests}
-                    onChange={(e) => handleInputChange('interests', e.target.value)}
-                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 min-h-[60px]"
-                  />
-                </div>
-                <div>
-                  <Label className="text-gray-300">Career Goals</Label>
-                  <Textarea
-                    placeholder="e.g., Looking for software engineering internships to gain hands-on experience..."
-                    value={formData.goals}
-                    onChange={(e) => handleInputChange('goals', e.target.value)}
-                    className="bg-gray-900/50 border-gray-600 text-white placeholder-gray-400 focus:border-blue-400 min-h-[80px]"
-                  />
-                </div>
-              </div>
-            </Card>
-
+            {/* ✅ Download Resume Button Only */}
             <Button
-              onClick={handleSubmit}
-              className="w-full bg-blue-500 hover:bg-blue-400 text-white py-3 text-lg transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/25"
+              onClick={() => {
+                const element = document.createElement("a");
+                const file = new Blob(
+                  [
+                    `Resume\n
+Name: ${formData.name}\n
+Email: ${formData.email}\n
+Phone: ${formData.phone}\n
+Location: ${formData.location}\n
+Preferred Location: ${formData.preferredLocation}\n
+Education: ${formData.education}\n
+University: ${formData.university}\n
+Graduation Year: ${formData.graduationYear}\n
+Skills: ${formData.skills}\n
+Experience: ${formData.experience}\n
+Languages: ${formData.languages}\n
+                    `,
+                  ],
+                  { type: "text/plain" }
+                );
+                element.href = URL.createObjectURL(file);
+                element.download = "resume.txt";
+                document.body.appendChild(element);
+                element.click();
+              }}
+              className="w-full mt-3 bg-green-500 hover:bg-green-400 text-white py-3 text-lg transition-all duration-300 hover:shadow-xl hover:shadow-green-500/25"
             >
-              Generate Resume & Suggestions
+              Download My Resume
             </Button>
-          </div>
-
-          {/* Live Preview Section */}
-          <div className="lg:sticky lg:top-24">
-            <Card className="bg-black border-gray-700 p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-white text-xl">Live Preview</h2>
-                <Eye className="text-blue-400" size={20} />
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 text-black min-h-[600px] shadow-2xl">
-                <div className="border-b-2 border-gray-200 pb-4 mb-4">
-                  <h1 className="text-2xl font-bold text-gray-800">
-                    {formData.name || 'Your Name'}
-                  </h1>
-                  <div className="text-gray-600 mt-2">
-                    {formData.email && <div>{formData.email}</div>}
-                    {formData.phone && <div>{formData.phone}</div>}
-                  </div>
-                </div>
-
-                {(formData.education || formData.university) && (
-                  <div className="mb-4">
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">Education</h2>
-                    <div className="text-gray-700">
-                      {formData.education && <div className="font-medium">{formData.education}</div>}
-                      {formData.university && (
-                        <div>
-                          {formData.university}
-                          {formData.graduationYear && ` • Class of ${formData.graduationYear}`}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {formData.skills && (
-                  <div className="mb-4">
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">Skills</h2>
-                    <div className="text-gray-700">{formData.skills}</div>
-                  </div>
-                )}
-
-                {formData.certifications && (
-                  <div className="mb-4">
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">Certifications</h2>
-                    <div className="text-gray-700">{formData.certifications}</div>
-                  </div>
-                )}
-
-                {formData.interests && (
-                  <div className="mb-4">
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">Interests</h2>
-                    <div className="text-gray-700">{formData.interests}</div>
-                  </div>
-                )}
-
-                {formData.goals && (
-                  <div>
-                    <h2 className="text-lg font-semibold text-gray-800 mb-2">Career Goals</h2>
-                    <div className="text-gray-700">{formData.goals}</div>
-                  </div>
-                )}
-
-                {!formData.name && !formData.email && !formData.education && (
-                  <div className="text-center text-gray-400 mt-20">
-                    <Eye className="mx-auto mb-4 opacity-50" size={48} />
-                    <p>Start filling out the form to see your resume preview</p>
-                  </div>
-                )}
-              </div>
-            </Card>
           </div>
         </div>
       </div>

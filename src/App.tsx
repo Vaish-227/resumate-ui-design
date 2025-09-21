@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Navigation } from './components/Navigation';
 import { LandingPage } from './components/LandingPage';
-import { ProfileCreation } from './components/ProfileCreation';
 import { ChoosePath } from './components/ChoosePath';
-import { ResumeUpload } from './components/ResumeUpload';
+//import { ResumeUpload } from './components/ResumeUpload';
 import { ResumeBuilder } from './components/ResumeBuilder';
 import { InternshipRecommendations } from './components/InternshipRecommendations';
 import { AboutPage } from './components/AboutPage';
+import { InternshipDetailsForm } from './components/InternshipDetailsForm';
 
 interface ProfileData {
   name: string;
@@ -15,25 +15,24 @@ interface ProfileData {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const [profileData, setProfileData] = useState<ProfileData>({ name: "Student", email: "student@example.com" });
   const [selectedPath, setSelectedPath] = useState<'upload' | 'build' | null>(null);
 
   const handleGetStarted = () => {
-    setCurrentPage('profile-creation');
-  };
-
-  const handleProfileComplete = (data: ProfileData) => {
-    setProfileData(data);
     setCurrentPage('choose-path');
   };
 
   const handlePathSelect = (path: 'upload' | 'build') => {
     setSelectedPath(path);
     if (path === 'upload') {
-      setCurrentPage('resume-upload');
+      setCurrentPage('internship-details-form');
     } else {
       setCurrentPage('resume-builder');
     }
+  };
+
+  const handleInternshipFormSubmit = () => {
+    setCurrentPage('internships');
   };
 
   const handleResumeSubmit = () => {
@@ -44,42 +43,27 @@ export default function App() {
     setCurrentPage('internships');
   };
 
-  // Navigation handler - reset flow for main nav items
   const handleNavigation = (page: string) => {
-    if (page === 'home') {
-      // Reset the flow when going back to home
-      setProfileData(null);
-      setSelectedPath(null);
-    } else if (page === 'resume-builder' && !profileData) {
-      // If trying to access resume builder directly without profile, start onboarding
-      setCurrentPage('profile-creation');
-      return;
-    } else if (page === 'internships' && !profileData) {
-      // If trying to access internships directly without profile, start onboarding
-      setCurrentPage('profile-creation');
-      return;
+    if (page === 'internships') {
+      setCurrentPage('internship-details-form');
+    } else {
+      setCurrentPage(page);
     }
-    setCurrentPage(page);
   };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
         return <LandingPage onGetStarted={handleGetStarted} />;
-      case 'profile-creation':
-        return <ProfileCreation onContinue={handleProfileComplete} />;
       case 'choose-path':
         return profileData ? (
           <ChoosePath profileData={profileData} onPathSelect={handlePathSelect} />
         ) : (
-          <ProfileCreation onContinue={handleProfileComplete} />
+          <LandingPage onGetStarted={handleGetStarted} />
         );
-      case 'resume-upload':
-        return profileData ? (
-          <ResumeUpload profileData={profileData} onUploadComplete={handleUploadComplete} />
-        ) : (
-          <ProfileCreation onContinue={handleProfileComplete} />
-        );
+      case 'internship-details-form':
+        return <InternshipDetailsForm onFormSubmit={handleInternshipFormSubmit} />;
+      
       case 'resume-builder':
         return <ResumeBuilder onSubmit={handleResumeSubmit} />;
       case 'internships':
@@ -91,8 +75,7 @@ export default function App() {
     }
   };
 
-  // Show navigation only for certain pages
-  const showNavigation = !['profile-creation', 'choose-path', 'resume-upload'].includes(currentPage);
+  const showNavigation = !['choose-path', 'internship-details-form'].includes(currentPage);
 
   return (
     <div className="min-h-screen bg-black text-white dark">
@@ -103,3 +86,4 @@ export default function App() {
     </div>
   );
 }
+
